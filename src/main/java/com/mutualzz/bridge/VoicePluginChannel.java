@@ -11,7 +11,7 @@ import java.util.UUID;
 
 /**
  * Plugin channel to the Fabric Mutualzz Voice mod.
- * Payload is UTF-8 JSON (small control messages only — audio rides a separate WS).
+ * Payload is UTF-8 JSON (small control messages only.
  */
 public final class VoicePluginChannel implements PluginMessageListener {
     public static final String CHANNEL = "mutualzz:voice";

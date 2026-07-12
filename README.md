@@ -63,8 +63,8 @@ See `[LICENSE](./LICENSE)`. Contact [mutualzz.com](https://mutualzz.com) for par
 
 ### 2. Add the plugin
 
-1. Download the official `mutualzz-bridge-1.0.0.jar` from Mutualzz (not third-party mirrors).
-2. Drop it into your server’s `plugins` folder.
+1. Download the official bridge jar from [Modrinth](https://modrinth.com) or the Mutualzz GitHub Release titled **Mutualzz Minecraft v…** (tag `minecraft-v…`) — not unofficial mirrors. The same GitHub release includes the Voice mod jar.
+2. Drop `mutualzz-bridge-*.jar` into your server’s `plugins` folder.
 3. Start (or restart) the server once so it creates the config folder.
 
 
