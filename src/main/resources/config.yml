@@ -1,0 +1,11 @@
+# Mutualzz Bridge — default config
+# Get your token from Mutualzz → User Settings → Minecraft Bridge.
+
+# Official Mutualzz hub (do not point this at third-party hosts)
+hubUrl: wss://bridge.mutualzz.com
+
+# Paste your bridge token from Mutualzz
+token: mz_bridge_your_token_here
+
+# Must match the server ID you use when binding Discord / voice in Mutualzz
+serverId: survival

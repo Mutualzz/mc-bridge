@@ -1,0 +1,7 @@
+# Local Paper run (xyz.jpenilla.run-paper)
+.gradle/
+build/
+run/
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+bin/

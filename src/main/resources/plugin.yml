@@ -1,0 +1,25 @@
+name: MutualzzBridge
+version: '${version}'
+main: com.mutualzz.bridge.MutualzzBridgePlugin
+api-version: '26.1.2'
+authors: [Mutualzz]
+description: Connects Minecraft chat to Mutualzz and Discord through the Mutualzz hub.
+website: https://mutualzz.com
+commands:
+  mzlink:
+    description: Link your Minecraft account to Mutualzz
+    usage: /mzlink [code]
+    aliases: [link]
+    permission: mutualzz.bridge.link
+  mzvoice:
+    description: Join or leave Mutualzz voice from Minecraft
+    usage: /mzvoice <join|leave> [room]
+    aliases: [mzv]
+    permission: mutualzz.bridge.voice
+permissions:
+  mutualzz.bridge.link:
+    description: Allows linking a Mutualzz account
+    default: true
+  mutualzz.bridge.voice:
+    description: Allows joining Mutualzz voice from Minecraft
+    default: true
