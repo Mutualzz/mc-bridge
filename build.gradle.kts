@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.mutualzz"
-version = "1.0.0"
+version = "1.0.1"
 
 java {
     // Paper 26.1.x requires JDK 25

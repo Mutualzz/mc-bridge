@@ -3,6 +3,6 @@
 # Get token from Mutualzz → User Settings → Minecraft Bridge.
 # Do not commit real tokens. End users should use wss://bridge.mutualzz.com.
 
-hubUrl: wss://bridge.mutualzz.com
-token: mz_bridge_<token>
-serverId: my-server-id
+hubUrl: ws://127.0.0.1:3015
+token: mz_bridge_LrQunzTdYSFhMPVeEacxGdgS7wAWe6Qc
+serverId: mutualzz-tests
