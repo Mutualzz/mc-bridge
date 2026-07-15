@@ -4,13 +4,15 @@ plugins {
 }
 
 group = "com.mutualzz"
-version = "1.0.2"
+version = "1.1.0"
 
 java {
-    // Paper 26.1.x requires JDK 25
+    // Develop on a modern JDK; emit Java 17 so Paper 1.18.2+ can load the jar.
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(25))
     }
+    // Paper API metadata may request a higher JVM — keep our --release 17.
+    disableAutoTargetJvm()
 }
 
 repositories {
@@ -19,9 +21,14 @@ repositories {
 }
 
 dependencies {
+    // Compile against a recent Paper API; runtime supports 1.18.2+ via chat fallbacks.
     compileOnly("io.papermc.paper:paper-api:26.1.2.build.+")
     implementation("org.java-websocket:Java-WebSocket:1.5.7")
     implementation("com.google.code.gson:gson:2.11.0")
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.release.set(17)
 }
 
 tasks.processResources {
@@ -39,7 +46,7 @@ tasks.jar {
 
 tasks {
     runServer {
-        // Downloads Paper, builds this plugin, drops the jar into plugins/, starts the server
+        // Dev server tracks current Paper; production jar still supports 1.18.2+.
         minecraftVersion("26.1.2")
         jvmArgs("-Xms1G", "-Xmx2G")
     }

@@ -23,7 +23,7 @@ PR and we'll fix it.
 1. Fork the repository.
 2. Create a branch for your change.
 3. Make your edits (keep the scope focused).
-4. Test locally when you can (`./gradlew jar` / `./gradlew runServer` for the plugin, `./gradlew jar` / `./gradlew runClient` for the mod).
+4. Test locally when you can (`./gradlew jar` / `./gradlew runServer` for the plugin, `./gradlew jar` / `./gradlew runClient` for the mod). Bridge builds emit **Java 17** bytecode (`options.release = 17`) so one jar can run on Paper **1.18.2+**; keep chat listeners dual (Paper `AsyncChatEvent` + Bukkit legacy).
 5. Open a pull request against Mutualzz’s repo and describe what changed and why.
 
 ## Contribution license

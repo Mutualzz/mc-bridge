@@ -1,10 +1,11 @@
 name: MutualzzBridge
 version: '${version}'
 main: com.mutualzz.bridge.MutualzzBridgePlugin
-api-version: '26.1.2'
+api-version: '1.18'
 authors: [Mutualzz]
-description: Connects Minecraft chat to Mutualzz and Discord through the Mutualzz hub.
+description: Connects Minecraft chat to Mutualzz and Discord through the Mutualzz hub. Requires Paper/Spigot 1.18.2+.
 website: https://mutualzz.com
+folia-supported: false
 commands:
   mzlink:
     description: Link your Minecraft account to Mutualzz
