@@ -41,7 +41,7 @@ See [`LICENSE`](./LICENSE). Contact [mutualzz.com](https://mutualzz.com) for par
 |---|---|
 | Server | **Paper (or compatible) 1.18.2+** — tested focus: 1.18.2, 1.21.x, 26.x |
 | Java | **17+** (Paper’s requirement for that MC line; newer Paper needs 21/25) |
-| Mutualzz | A bridge created in Mutualzz settings, with a **bridge token** |
+| Mutualzz | A **space** with Manage Space permission, and a bridge created under **Space Settings → Minecraft Bridge**, with a **bridge token** |
 | Optional | Discord linked in Mutualzz; voice rooms bound to this server |
 
 ---
@@ -50,7 +50,7 @@ See [`LICENSE`](./LICENSE). Contact [mutualzz.com](https://mutualzz.com) for par
 
 ### 1. Create a bridge in Mutualzz
 
-1. Open Mutualzz → **User Settings → Minecraft Bridge** (or your space’s bridge settings).
+1. Open Mutualzz → open the space → **Space Settings → Minecraft Bridge**.
 2. Create a bridge and copy the **token** (starts with `mz_bridge_…`).
 3. Choose a **server ID** (e.g. `survival`) — use the same ID when binding Discord channels and voice rooms in Mutualzz.
 
@@ -78,7 +78,7 @@ serverId: survival
 ### 4. Restart and finish setup in Mutualzz
 
 1. Restart the server after saving config.
-2. In Mutualzz, open **Minecraft Bridge** for this bridge:
+2. In Mutualzz, open **Space Settings → Minecraft Bridge** for this space:
    - Link Discord (if you use it)
    - Bind chat / voice rooms to this `serverId`
 3. You’re done on the server side.
