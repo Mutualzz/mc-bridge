@@ -88,7 +88,9 @@ serverId: survival
 1. Join the Minecraft server.
 2. Run `/mzlink` and enter the code from Mutualzz (or `/mzlink <code>`).
 3. Voice: `/mzvoice join` or `/mzvoice join <room>` — leave with `/mzvoice leave`.
-4. For **hearing people in-game**, install the [Mutualzz Voice](../mc-voice) jar for **your Minecraft version and loader** (Fabric needs Fabric API + Amecs; NeoForge/Forge do not).
+4. For **hearing people in-game**, install the [Mutualzz Voice](../mc-voice) jar for **your Minecraft version and loader** (Fabric needs Fabric API + Amecs on 26.1.2; NeoForge/Forge do not).
+
+In-game voice defaults use **Alt** (not Ctrl) — e.g. **Alt+O** settings, **Alt+M** mute, hold **V** for push-to-talk. Full list: [Mutualzz Voice controls](../mc-voice#controls).
 
 ---
 

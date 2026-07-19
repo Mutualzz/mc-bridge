@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.mutualzz"
-version = "1.1.0"
+version = "1.2.0"
 
 java {
     // Develop on a modern JDK; emit Java 17 so Paper 1.18.2+ can load the jar.
