@@ -10,7 +10,7 @@ Players can:
 - Share chat with Discord / the Mutualzz app
 - Join Mutualzz voice from in-game (`/mzvoice`)
 
-In-game **mic and speakers** need the [Mutualzz Voice](../mc-voice) mod on each player’s client — the jar must match their **MC version + loader** (Fabric / NeoForge / Forge). Presence-only voice works without the mod.
+In-game **mic and speakers** need the [Mutualzz Voice](https://github.com/Mutualzz/mc-voice) mod on each player’s client — the jar must match their **MC version + loader** (Fabric / NeoForge / Forge). Presence-only voice works without the mod.
 
 The plugin talks to **Mutualzz’s hosted bridge hub**. You do not run your own hub.
 
@@ -23,7 +23,7 @@ Source is available for transparency and **community contributions**. That is **
 **You may:**
 
 - Install official builds on your Paper server and connect them to Mutualzz with your bridge token
-- Fork the repo and open pull requests — contributors get credit (see [`CONTRIBUTING.md`](./CONTRIBUTING.md))
+- Fork the repo and open pull requests — contributors get credit (see [`CONTRIBUTING.md`](https://github.com/Mutualzz/mc-bridge/blob/master/CONTRIBUTING.md))
 
 **You may not** (without written permission from Mutualzz):
 
@@ -31,7 +31,7 @@ Source is available for transparency and **community contributions**. That is **
 - Publish it on Modrinth, CurseForge, GitHub Releases, etc. for others to install
 - Run or sell a third-party “Mutualzz-compatible” hub
 
-See [`LICENSE`](./LICENSE). Contact [mutualzz.com](https://mutualzz.com) for partnership rights.
+See [`LICENSE`](https://github.com/Mutualzz/mc-bridge/blob/master/LICENSE). Contact [mutualzz.com](https://mutualzz.com) for partnership rights.
 
 ---
 
@@ -88,9 +88,9 @@ serverId: survival
 1. Join the Minecraft server.
 2. Run `/mzlink` and enter the code from Mutualzz (or `/mzlink <code>`).
 3. Voice: `/mzvoice join` or `/mzvoice join <room>` — leave with `/mzvoice leave`.
-4. For **hearing people in-game**, install the [Mutualzz Voice](../mc-voice) jar for **your Minecraft version and loader** (Fabric needs Fabric API + Amecs on 26.1.2; NeoForge/Forge do not).
+4. For **hearing people in-game**, install the [Mutualzz Voice](https://github.com/Mutualzz/mc-voice) jar for **your Minecraft version and loader** (Fabric needs Fabric API + Amecs on 26.1.2; NeoForge/Forge do not).
 
-In-game voice defaults use **Alt** (not Ctrl) — e.g. **Alt+O** settings, **Alt+M** mute, hold **V** for push-to-talk. Full list: [Mutualzz Voice controls](../mc-voice#controls).
+In-game voice defaults use **Alt** (not Ctrl) — e.g. **Alt+O** settings, **Alt+M** mute, hold **V** for push-to-talk. Full list: [Mutualzz Voice controls](https://github.com/Mutualzz/mc-voice#controls).
 
 ---
 

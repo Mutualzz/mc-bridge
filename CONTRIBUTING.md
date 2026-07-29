@@ -3,7 +3,7 @@
 Thanks for wanting to help with Mutualzz Bridge / Mutualzz Voice.
 
 Contributions are welcome. Redistributing unofficial builds or running your
-own hub is still not allowed — see [`LICENSE`](./LICENSE).
+own hub is still not allowed — see [`LICENSE`](https://github.com/Mutualzz/mc-bridge/blob/master/LICENSE).
 
 
 ## Credit
