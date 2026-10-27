@@ -1,3 +1,13 @@
+<div align="center">
+
+# Mutualzz development moved to [git.mutualzz.com](https://git.mutualzz.com/mutualzz/mutualzz)
+
+**GitHub is a read-only mirror. Issues and pull requests opened on GitHub are not monitored.**
+
+Sign in with your GitHub account. No new password needed.
+
+</div>
+
 # Mutualzz Bridge (server plugin)
 
 Connects your **Paper** Minecraft server to **Mutualzz** — chat, account linking, and voice presence with Discord and the Mutualzz app.
@@ -37,12 +47,12 @@ See [`LICENSE`](https://github.com/Mutualzz/mc-bridge/blob/master/LICENSE). Cont
 
 ## What you need
 
-| | |
-|---|---|
-| Server | **Paper (or compatible) 1.18.2+** — tested focus: 1.18.2, 1.21.x, 26.x |
-| Java | **17+** (Paper’s requirement for that MC line; newer Paper needs 21/25) |
+|          |                                                                                                                                     |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Server   | **Paper (or compatible) 1.18.2+** — tested focus: 1.18.2, 1.21.x, 26.x                                                              |
+| Java     | **17+** (Paper’s requirement for that MC line; newer Paper needs 21/25)                                                             |
 | Mutualzz | A **space** with Manage Space permission, and a bridge created under **Space Settings → Minecraft Bridge**, with a **bridge token** |
-| Optional | Discord linked in Mutualzz; voice rooms bound to this server |
+| Optional | Discord linked in Mutualzz; voice rooms bound to this server                                                                        |
 
 ---
 
@@ -96,12 +106,12 @@ In-game voice defaults use **Alt** (not Ctrl) — e.g. **Alt+O** settings, **Alt
 
 ## Commands
 
-| Command | Who | What it does |
-|---|---|---|
-| `/mzlink` | Players | Start linking to Mutualzz |
-| `/mzlink <code>` | Players | Finish linking with a code from Mutualzz |
+| Command                | Who     | What it does                               |
+| ---------------------- | ------- | ------------------------------------------ |
+| `/mzlink`              | Players | Start linking to Mutualzz                  |
+| `/mzlink <code>`       | Players | Finish linking with a code from Mutualzz   |
 | `/mzvoice join [room]` | Players | Join Mutualzz voice (`default` if no room) |
-| `/mzvoice leave` | Players | Leave Mutualzz voice |
+| `/mzvoice leave`       | Players | Leave Mutualzz voice                       |
 
 Permissions (default: everyone can use them):
 
