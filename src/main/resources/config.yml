@@ -9,3 +9,8 @@ token: mz_bridge_your_token_here
 
 # Must match the server ID you use when binding Discord / voice in Mutualzz
 serverId: survival
+
+# Sync player inventories and ender chests to Mutualzz.
+# Space admins can view every player's saved inventory; linked players can view their own.
+# Set to false to stop sending inventories (restart the server after changing).
+inventorySync: true

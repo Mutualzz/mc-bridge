@@ -83,6 +83,9 @@ token: mz_bridge_your_token_here
 
 # Same ID you use when binding Discord / voice in Mutualzz
 serverId: survival
+
+# Sync player inventories to Mutualzz (see "Inventory sync" below)
+inventorySync: true
 ```
 
 ### 4. Restart and finish setup in Mutualzz
@@ -119,6 +122,18 @@ Permissions (default: everyone can use them):
 - `mutualzz.bridge.voice`
 
 ---
+
+## Inventory sync
+
+With `inventorySync: true` (the default), the plugin sends each player's inventory and ender chest to Mutualzz:
+
+- when they leave the server,
+- every few minutes while they're online,
+- live while someone is viewing it in Mutualzz.
+
+This applies to **every player on the server**, including players without a Mutualzz account. Space admins of the connected space can view any player's saved inventory; players can view their own after `/mzlink`. Snapshots are deleted when the bridge is deleted.
+
+To turn it off, set `inventorySync: false` in `config.yml` and restart the server.
 
 ## Checklist
 
