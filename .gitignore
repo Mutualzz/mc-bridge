@@ -5,3 +5,4 @@ run/
 *.jar
 !gradle/wrapper/gradle-wrapper.jar
 bin/
+dev-config.yml

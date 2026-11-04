@@ -1,8 +1,0 @@
-# Maintainer / Mutualzz-internal test config only.
-# Copied into run/plugins/MutualzzBridge/config.yml when you run `./gradlew runServer`.
-# Get token from Mutualzz → User Settings → Minecraft Bridge.
-# Do not commit real tokens. End users should use wss://bridge.mutualzz.com.
-
-hubUrl: ws://127.0.0.1:3015
-token: mz_bridge_LrQunzTdYSFhMPVeEacxGdgS7wAWe6Qc
-serverId: mutualzz-tests
