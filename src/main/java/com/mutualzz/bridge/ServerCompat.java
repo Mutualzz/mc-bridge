@@ -87,4 +87,23 @@ public final class ServerCompat {
       return false;
     }
   }
+
+  public static boolean hasArmorTrims() {
+    try {
+      Class.forName("org.bukkit.inventory.meta.ArmorMeta");
+      return true;
+    } catch (ClassNotFoundException e) {
+      return false;
+    }
+  }
+
+  public static boolean hasGlintOverride() {
+    try {
+      org.bukkit.inventory.meta.ItemMeta.class.getMethod("hasEnchantmentGlintOverride");
+      return true;
+    } catch (NoSuchMethodException e) {
+      return false;
+    }
+  }
+
 }

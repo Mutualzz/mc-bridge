@@ -135,9 +135,20 @@ This applies to **every player on the server**, including players without a Mutu
 
 To turn it off, set `inventorySync: false` in `config.yml` and restart the server.
 
-## Checklist
+## Remote moderation
 
-- [ ] Paper/Spigot **1.18.2+** (Java 17+)
+With `remoteModeration: true`, admins of the connected Mutualzz space can kick and ban players on this server from the app. Off by default — space admins are not automatically Minecraft operators.
+
+Bans run `banCommand` / `unbanCommand` as the console, so ban plugins (EssentialsX, LiteBans, …) keep working. Adjust the commands if your plugin uses different ones. Every remote command is written to the server log.`
+
+Servers that were offline when a ban or unban happened catch up the next time they connect. If you turn `remoteModeration` on later, bans made in Mutualzz while it was off are applied on the next connect.
+
+## Remote inventory editing
+
+With `remoteInventoryEdit: true`, space admins can give, remove, move and change the amount of items in player inventories from the app — also for offline players (applied when they next join). Off by default.
+
+Every edit is checked against the slot's current state when it's applied: items the server already knew are compared byte for byte, and items created by an earlier edit in the same queue are compared by item type. If the inventory changed in the meantime, that edit and every later one are rejected instead of applied, so items can't be duplicated. Queued edits for offline players are applied together, in order, in a single tick when they join. Every edit is written to the server log.
+
 - [ ] Official plugin jar in `plugins/`
 - [ ] `config.yml` has `hubUrl: wss://bridge.mutualzz.com`, your `token`, and `serverId`
 - [ ] Server restarted after editing config

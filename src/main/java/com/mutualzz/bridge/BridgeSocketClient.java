@@ -1,8 +1,13 @@
 package com.mutualzz.bridge;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mutualzz.bridge.inventory.InventoryEditor;
+import com.mutualzz.bridge.inventory.InventorySnapshot;
 import com.mutualzz.bridge.inventory.InventoryWatcher;
+import com.mutualzz.bridge.moderation.RemoteModeration;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -12,8 +17,10 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -42,6 +49,9 @@ public final class BridgeSocketClient {
   private boolean identified = false;
   private final List<String> voiceRooms = new CopyOnWriteArrayList<>();
   private final InventoryWatcher inventoryWatcher;
+  private final RemoteModeration moderation;
+  private final boolean remoteInventoryEdit;
+  private final Deque<String> appliedEdits = new ArrayDeque<>();
 
   private static final long STATUS_INTERVAL_TICKS = 20L * 30; // 30 seconds
 
@@ -56,6 +66,8 @@ public final class BridgeSocketClient {
     this.serverId = serverId;
     this.inventorySync = inventorySync;
     this.inventoryWatcher = new InventoryWatcher(plugin, this);
+    this.moderation = new RemoteModeration(plugin);
+    this.remoteInventoryEdit = plugin.getConfig().getBoolean("remoteInventoryEdit", false);
   }
 
   public boolean isInventorySyncEnabled() {
@@ -273,9 +285,12 @@ public final class BridgeSocketClient {
   }
 
   private void sendIdentify() {
-    send("identify", Map.of(
-        "token", token,
-        "serverId", serverId));
+    JsonObject d = new JsonObject();
+    d.addProperty("token", token);
+    d.addProperty("serverId", serverId);
+    d.addProperty("remoteModeration", moderation.isEnabled());
+    d.addProperty("remoteInventoryEdit", remoteInventoryEdit);
+    sendRaw("identify", d);
   }
 
   private void handleDispatch(JsonObject payload) {
@@ -288,6 +303,8 @@ public final class BridgeSocketClient {
       case "LINK_RESULT" -> onLinkResult(d);
       case "VOICE_RESULT" -> onVoiceResult(d);
       case "INVENTORY_WATCH" -> onInventoryWatch(d);
+      case "MODERATE" -> onModerate(d);
+      case "INVENTORY_EDIT_BATCH" -> onInventoryEditBatch(d);
       default -> {
       }
     }
@@ -372,6 +389,89 @@ public final class BridgeSocketClient {
     UUID playerUuid = uuid(d, "uuid");
     if (playerUuid != null) {
       inventoryWatcher.watch(playerUuid);
+    }
+  }
+
+  private void onModerate(JsonObject d) {
+    if (!serverId.equals(string(d, "serverId", ""))) {
+      return;
+    }
+    var result = moderation.handle(
+        string(d, "action", ""),
+        uuid(d, "uuid"),
+        string(d, "name", null),
+        string(d, "reason", ""));
+
+    JsonObject reply = new JsonObject();
+    reply.addProperty("requestId", string(d, "requestId", ""));
+    reply.addProperty("ok", result.ok());
+    reply.addProperty("message", result.message());
+    sendRaw("moderation_result", reply);
+  }
+
+  private void onInventoryEditBatch(JsonObject d) {
+    if (!serverId.equals(string(d, "serverId", ""))) {
+      return;
+    }
+
+    UUID playerUuid = uuid(d, "uuid");
+    Player player = playerUuid != null ? Bukkit.getPlayer(playerUuid) : null;
+    JsonArray edits = d.has("edits") && d.get("edits").isJsonArray()
+        ? d.getAsJsonArray("edits")
+        : new JsonArray();
+
+    JsonArray results = new JsonArray();
+    boolean failed = false;
+
+    for (JsonElement element : edits) {
+      if (!element.isJsonObject()) {
+        continue;
+      }
+      JsonObject edit = element.getAsJsonObject();
+      String editId = string(edit, "editId", "");
+      JsonObject op = object(edit, "op");
+
+      InventoryEditor.Result result;
+      if (!remoteInventoryEdit) {
+        result = new InventoryEditor.Result(false, "Inventory editing is disabled on this server");
+      } else if (player == null) {
+        result = new InventoryEditor.Result(false, "Player is not online");
+      } else if (appliedEdits.contains(editId)) {
+        result = new InventoryEditor.Result(true, "Already applied");
+      } else if (failed) {
+        result = new InventoryEditor.Result(false, "An earlier edit failed");
+      } else {
+        result = InventoryEditor.apply(player, op, object(edit, "expected"));
+        if (result.ok()) {
+          rememberAppliedEdit(editId);
+        } else {
+          failed = true;
+        }
+      }
+
+      JsonObject entry = new JsonObject();
+      entry.addProperty("editId", editId);
+      entry.addProperty("ok", result.ok());
+      entry.addProperty("message", result.message());
+      results.add(entry);
+      plugin.getLogger().info("Remote inventory edit " + editId
+          + " (" + string(op, "kind", "?") + "): " + result.message());
+    }
+
+    JsonObject reply = new JsonObject();
+    reply.addProperty("batchId", string(d, "batchId", ""));
+    reply.addProperty("retry", remoteInventoryEdit && player == null);
+    reply.add("results", results);
+    if (player != null) {
+      reply.add("inventory", InventorySnapshot.of(player));
+    }
+    sendRaw("inventory_edit_results", reply);
+  }
+
+  private void rememberAppliedEdit(String editId) {
+    appliedEdits.addLast(editId);
+    if (appliedEdits.size() > 200) {
+      appliedEdits.removeFirst();
     }
   }
 

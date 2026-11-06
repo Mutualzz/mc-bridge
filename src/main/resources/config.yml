@@ -14,3 +14,16 @@ serverId: survival
 # Space admins can view every player's saved inventory; linked players can view their own.
 # Set to false to stop sending inventories (restart the server after changing).
 inventorySync: true
+
+# Let space admins kick and ban players from the Mutualzz app.
+# Off by default: space admins are not automatically Minecraft operators.
+remoteModeration: false
+
+# Commands run as the console. {name} and {reason} are filled in.
+# Change these if your ban plugin uses other commands (e.g. "unban {name}").
+banCommand: "ban {name} {reason}"
+unbanCommand: "pardon {name}"
+
+# Let space admins edit player inventories (give, remove, move, change amount) from the Mutualzz app.
+# Off by default. Every edit is checked against the item's exact current state, so stale edits are rejected instead of duplicating items.
+remoteInventoryEdit: false
