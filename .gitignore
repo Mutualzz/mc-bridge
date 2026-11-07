@@ -6,5 +6,3 @@ run/
 !gradle/wrapper/gradle-wrapper.jar
 bin/
 dev-config.yml
-bin/
-obj/
