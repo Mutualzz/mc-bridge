@@ -160,12 +160,15 @@ public final class BridgeSocketClient {
         "name", name));
   }
 
-  public void sendGameEvent(String kind, UUID uuid, String name, String message) {
-    send("game_event", Map.of(
-        "kind", kind,
-        "uuid", uuid.toString(),
-        "name", name,
-        "message", message));
+  public void sendGameEvent(String kind, UUID uuid, String name, String message, JsonObject advancement) {
+    JsonObject data = new JsonObject();
+    data.addProperty("kind", kind);
+    data.addProperty("uuid", uuid.toString());
+    data.addProperty("name", name);
+    data.addProperty("message", message);
+    if (advancement != null)
+      data.add("advancement", advancement);
+    sendRaw("game_event", data);
   }
 
   public void sendInventory(JsonObject snapshot) {
